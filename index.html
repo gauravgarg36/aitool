@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automotive News Rewriter</title>
+    <title>SEO Data & Article Rewriter</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -69,29 +69,110 @@
             height: 1.25rem; /* Icon size */
             fill: currentColor; /* Use button text color for icon */
         }
+        /* Styling for the new SEO generation buttons with icons */
+        .seo-generate-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between icon and text */
+            padding: 0.75rem 1.5rem; /* Adjust padding for better look with icon */
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 9999px; /* Full rounded */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow */
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+        .seo-generate-button:hover {
+            transform: scale(1.05);
+        }
+        .seo-generate-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.5); /* Focus ring */
+        }
+        .seo-generate-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none; /* No scale on hover when disabled */
+        }
+        .seo-generate-button svg {
+            width: 1.5rem; /* Larger icon for these main buttons */
+            height: 1.5rem;
+            fill: currentColor;
+        }
+        /* Styling for individual magic buttons */
+        .individual-seo-button {
+            background-color: #4a5568; /* Darker gray for individual buttons */
+            color: #e2e8f0;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .individual-seo-button:hover:not(:disabled) {
+            background-color: #616e7f;
+            transform: scale(1.05);
+        }
+        .individual-seo-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .individual-seo-button svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: currentColor;
+        }
+        .individual-seo-button span {
+            font-size: 0.75rem; /* Smaller text for individual buttons */
+            margin-left: 0.25rem;
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
     <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-4xl border border-gray-700">
         <h1 class="text-4xl font-extrabold text-center text-white mb-8">
-            Automotive Article Rewriter
+            SEO Data & Article Rewriter
         </h1>
 
-        <!-- Original Content Section -->
+        <!-- Article Title Section -->
         <div class="mb-6">
-            <label for="originalContent" class="block text-lg font-semibold text-gray-200 mb-2">
-                Original News Article
+            <label for="articleTitle" class="block text-lg font-semibold text-gray-200 mb-2">
+                Article Title
+            </label>
+            <div class="relative flex items-center space-x-3">
+                <input
+                    type="text"
+                    id="articleTitle"
+                    class="flex-grow p-4 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-gray-700 text-gray-200 shadow-sm"
+                    placeholder="Enter the article title here (required for SEO generation)..."
+                />
+                <button
+                    class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 self-start"
+                    data-target="articleTitle"
+                    title="Copy to clipboard"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7H19M19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1Z" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Article Content Section -->
+        <div class="mb-6">
+            <label for="articleContent" class="block text-lg font-semibold text-gray-200 mb-2">
+                Original Article Content
             </label>
             <div class="relative flex items-center space-x-3">
                 <textarea
-                    id="originalContent"
+                    id="articleContent"
                     rows="10"
                     class="flex-grow p-4 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-gray-700 text-gray-200 resize-y shadow-sm"
-                    placeholder="Paste your news article content here..."
+                    placeholder="Paste your original article content here..."
                 ></textarea>
                 <button
                     class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 self-start"
-                    data-target="originalContent"
+                    data-target="articleContent"
                     title="Copy to clipboard"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7H19M19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1Z" /></svg>
@@ -104,6 +185,7 @@
             <button
                 id="rewriteArticleButton"
                 class="bg-gradient-to-r from-green-700 to-teal-800 hover:from-green-800 hover:to-teal-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500"
+                disabled
             >
                 Rewrite Article
             </button>
@@ -149,13 +231,13 @@
         </div>
 
         <!-- SEO Data Output Sections -->
-        <h2 class="text-2xl font-bold text-white mb-4 mt-8">SEO Data</h2>
+        <h2 class="text-2xl font-bold text-white mb-4 mt-8">Generated SEO Data</h2>
 
         <div class="mb-6">
             <label for="subTitle" class="block text-lg font-semibold text-gray-200 mb-2">
                 Sub Title
             </label>
-            <div class="relative flex flexitems-center space-x-3">
+            <div class="relative flex items-center space-x-3">
                 <textarea
                     id="subTitle"
                     rows="3"
@@ -164,11 +246,22 @@
                     readonly
                 ></textarea>
                 <button
-                    class="generate-seo-field-button bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 self-start"
+                    class="individual-seo-button generate-single-seo-title-button"
                     data-target="subTitle"
                     data-prompt-type="subTitle"
+                    title="Generate Sub Title from Title Only"
                 >
-                    Generate
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                    <span>Title</span>
+                </button>
+                <button
+                    class="individual-seo-button generate-single-seo-article-button"
+                    data-target="subTitle"
+                    data-prompt-type="subTitle"
+                    title="Generate Sub Title from Article"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20V4H7.99999L8 8H13V13H18V20Z"/></svg>
+                    <span>Article</span>
                 </button>
                 <button
                     class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 self-start"
@@ -194,11 +287,22 @@
                     readonly
                 ></textarea>
                 <button
-                    class="generate-seo-field-button bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 self-start"
+                    class="individual-seo-button generate-single-seo-title-button"
                     data-target="metaTitle"
                     data-prompt-type="metaTitle"
+                    title="Generate Meta Title from Title Only"
                 >
-                    Generate
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                    <span>Title</span>
+                </button>
+                <button
+                    class="individual-seo-button generate-single-seo-article-button"
+                    data-target="metaTitle"
+                    data-prompt-type="metaTitle"
+                    title="Generate Meta Title from Article"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20V4H7.99999L8 8H13V13H18V20Z"/></svg>
+                    <span>Article</span>
                 </button>
                 <button
                     class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 self-start"
@@ -219,16 +323,27 @@
                 <textarea
                     id="metaDescription"
                     rows="3"
-                    class="flex-grow p-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-200 resize-y shadow-sm"
+                    class="flex-grow p-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-200 shadow-sm resize-y"
                     placeholder="Generated meta description will appear here..."
                     readonly
                 ></textarea>
                 <button
-                    class="generate-seo-field-button bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 self-start"
+                    class="individual-seo-button generate-single-seo-title-button"
                     data-target="metaDescription"
                     data-prompt-type="metaDescription"
+                    title="Generate Meta Description from Title Only"
                 >
-                    Generate
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                    <span>Title</span>
+                </button>
+                <button
+                    class="individual-seo-button generate-single-seo-article-button"
+                    data-target="metaDescription"
+                    data-prompt-type="metaDescription"
+                    title="Generate Meta Description from Article"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20V4H7.99999L8 8H13V13H18V20Z"/></svg>
+                    <span>Article</span>
                 </button>
                 <button
                     class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 self-start"
@@ -254,11 +369,22 @@
                     readonly
                 ></textarea>
                 <button
-                    class="generate-seo-field-button bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 self-start"
+                    class="individual-seo-button generate-single-seo-title-button"
                     data-target="metaKeywords"
                     data-prompt-type="metaKeywords"
+                    title="Generate Meta Keywords from Title Only"
                 >
-                    Generate
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                    <span>Title</span>
+                </button>
+                <button
+                    class="individual-seo-button generate-single-seo-article-button"
+                    data-target="metaKeywords"
+                    data-prompt-type="metaKeywords"
+                    title="Generate Meta Keywords from Article"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20V4H7.99999L8 8H13V13H18V20Z"/></svg>
+                    <span>Article</span>
                 </button>
                 <button
                     class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 self-start"
@@ -270,25 +396,96 @@
             </div>
             <div id="loadingMetaKeywords" class="seo-loading-indicator">Generating...</div>
         </div>
+
+        <!-- SEO Slug Field -->
+        <div class="mb-6">
+            <label for="seoSlug" class="block text-lg font-semibold text-gray-200 mb-2">
+                SEO Slug
+            </label>
+            <div class="relative flex items-center space-x-3">
+                <textarea
+                    id="seoSlug"
+                    rows="3"
+                    class="flex-grow p-4 border border-gray-600 rounded-lg bg-gray-700 text-gray-200 shadow-sm resize-y"
+                    placeholder="Generated SEO slug will appear here..."
+                    readonly
+                ></textarea>
+                <button
+                    class="individual-seo-button generate-single-seo-title-button"
+                    data-target="seoSlug"
+                    data-prompt-type="seoSlug"
+                    title="Generate SEO Slug from Title Only"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                    <span>Title</span>
+                </button>
+                <button
+                    class="individual-seo-button generate-single-seo-article-button"
+                    data-target="seoSlug"
+                    data-prompt-type="seoSlug"
+                    title="Generate SEO Slug from Article"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20V4H7.99999L8 8H13V13H18V20Z"/></svg>
+                    <span>Article</span>
+                </button>
+                <button
+                    class="copy-button bg-gray-600 hover:bg-gray-500 text-gray-100 font-bold rounded-lg shadow-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 ml-2 self-start"
+                    data-target="seoSlug"
+                    title="Copy to clipboard"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7H19M19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1Z" /></svg>
+                </button>
+            </div>
+            <div id="loadingSeoSlug" class="seo-loading-indicator">Generating...</div>
+        </div>
+
+        <!-- New SEO Generation Buttons (for all fields at once) -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+            <button
+                id="generateSeoFromArticleButton"
+                class="seo-generate-button bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white"
+                disabled
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                Generate All SEO from Article
+            </button>
+            <button
+                id="generateSeoFromTitleButton"
+                class="seo-generate-button bg-gradient-to-r from-purple-900 to-purple-700 hover:from-purple-800 hover:to-purple-600 text-white"
+                disabled
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.19 8.63L2 9.24L7.46 13.17L5.82 20.24L12 16.5L18.18 20.24L16.54 13.17L22 9.24L14.81 8.63L12 2Z"/></svg>
+                Generate All SEO from Title Only
+            </button>
+        </div>
+
     </div>
 
     <script type="module">
         // Get references to DOM elements
-        const originalContentTextarea = document.getElementById('originalContent');
+        const articleTitleInput = document.getElementById('articleTitle');
+        const articleContentTextarea = document.getElementById('articleContent');
         const rewriteArticleButton = document.getElementById('rewriteArticleButton');
         const rewrittenContentTextarea = document.getElementById('rewrittenContent');
-        const subTitleInput = document.getElementById('subTitle');
-        const metaTitleInput = document.getElementById('metaTitle');
-        const metaDescriptionTextarea = document.getElementById('metaDescription');
-        const metaKeywordsInput = document.getElementById('metaKeywords');
+        const generateSeoFromArticleButton = document.getElementById('generateSeoFromArticleButton');
+        const generateSeoFromTitleButton = document.getElementById('generateSeoFromTitleButton');
+
         const loadingIndicator = document.getElementById('loadingIndicator');
         const loadingMessage = document.getElementById('loadingMessage');
         const errorMessageDiv = document.getElementById('errorMessage');
         const errorText = document.getElementById('errorText');
 
+        const subTitleInput = document.getElementById('subTitle');
+        const metaTitleInput = document.getElementById('metaTitle');
+        const metaDescriptionTextarea = document.getElementById('metaDescription');
+        const metaKeywordsInput = document.getElementById('metaKeywords');
+        const seoSlugInput = document.getElementById('seoSlug');
+
         // Select all copy buttons and individual generate SEO buttons
         const copyButtons = document.querySelectorAll('.copy-button');
-        const generateSeoFieldButtons = document.querySelectorAll('.generate-seo-field-button');
+        const generateSingleSeoTitleButtons = document.querySelectorAll('.generate-single-seo-title-button');
+        const generateSingleSeoArticleButtons = document.querySelectorAll('.generate-single-seo-article-button');
+
 
         // Define the core AI prompt for the main article rewrite
         const mainRewritePrompt = `I need your expertise to transform a standard news article into an engaging, concise piece for an automotive audience. Please adopt the persona of an experienced automotive journalist.
@@ -300,18 +497,18 @@ Character Exclusion: DO NOT include colons (:), semicolons (;), or curly braces 
 Focus: Highlight the most critical and interesting aspects from an automotive perspective. Include industry insights, potential impacts on consumers or the market, and a touch of professional opinion where appropriate.
 Tone: Maintain an engaging, informative, and slightly enthusiastic tone, typical of automotive journalism.`;
 
+
         /**
          * Generic function to call the Gemini API for content generation.
          * @param {string} prompt The specific prompt for the AI.
          * @returns {Promise<string>} The generated text.
          */
         async function callGeminiAPI(prompt) {
-            console.log("Calling Gemini API with prompt:", prompt.substring(0, 200) + "..."); // Log first 200 chars of prompt
+            console.log("Calling Gemini API with prompt:", prompt.substring(0, 200) + "...");
             let chatHistory = [];
             chatHistory.push({ role: "user", parts: [{ text: prompt }] });
             const payload = { contents: chatHistory };
 
-            // The API key is provided by the Canvas environment automatically.
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDWDVOczZhclrBeV45wSrr6kQQi-wphXnY`;
 
             try {
@@ -337,13 +534,12 @@ Tone: Maintain an engaging, informative, and slightly enthusiastic tone, typical
                     result.candidates[0].content.parts.length > 0) {
                     return result.candidates[0].content.parts[0].text;
                 } else {
-                    // Log the full result if the expected structure is missing
                     console.error("Unexpected API response structure or no content generated:", result);
                     throw new Error('Unexpected API response structure or no content generated. Check console for details.');
                 }
             } catch (error) {
                 console.error('Error in callGeminiAPI:', error);
-                throw error; // Re-throw to be caught by the main click handler
+                throw error;
             }
         }
 
@@ -408,22 +604,15 @@ Tone: Maintain an engaging, informative, and slightly enthusiastic tone, typical
 
         // Event listener for the "Rewrite Article" button
         rewriteArticleButton.addEventListener('click', async () => {
-            const originalContent = originalContentTextarea.value.trim();
+            const originalContent = articleContentTextarea.value.trim();
 
-            // Clear all fields and error messages
+            // Clear rewritten content and error messages
             rewrittenContentTextarea.value = '';
-            subTitleInput.value = '';
-            metaTitleInput.value = '';
-            metaDescriptionTextarea.value = '';
-            metaKeywordsInput.value = '';
             errorMessageDiv.classList.add('hidden');
             errorText.textContent = '';
 
-            // Disable all SEO field buttons initially
-            generateSeoFieldButtons.forEach(btn => btn.disabled = true);
-
             if (!originalContent) {
-                errorText.textContent = 'Please enter some content to rewrite the article.';
+                errorText.textContent = 'Please enter original article content to rewrite.';
                 errorMessageDiv.classList.remove('hidden');
                 return;
             }
@@ -432,102 +621,274 @@ Tone: Maintain an engaging, informative, and slightly enthusiastic tone, typical
             loadingMessage.textContent = 'Rewriting article... Please wait.';
             loadingIndicator.classList.remove('hidden');
             rewriteArticleButton.disabled = true; // Disable itself during processing
+            generateSeoFromArticleButton.disabled = true; // Disable main SEO buttons during rewrite
+            generateSeoFromTitleButton.disabled = true;
+            generateSingleSeoTitleButtons.forEach(btn => btn.disabled = true); // Disable individual magic buttons
+            generateSingleSeoArticleButtons.forEach(btn => btn.disabled = true);
+
 
             try {
-                const fullPrompt = `${mainRewritePrompt}\n\nOriginal Article Content:\n${originalContent}`;
+                // Pass the articleTitle along with the content for better context
+                const fullPrompt = `${mainRewritePrompt}\n\nOriginal Article Title: ${articleTitleInput.value.trim()}\nOriginal Article Content:\n${originalContent}`;
                 const rewrittenText = await callGeminiAPI(fullPrompt);
                 rewrittenContentTextarea.value = rewrittenText;
-                generateSeoFieldButtons.forEach(btn => btn.disabled = false); // Enable SEO field buttons on success
+                // After rewrite, re-evaluate if SEO buttons should be enabled
+                updateButtonStates();
             } catch (error) {
                 console.error('Error rewriting article:', error);
                 errorText.textContent = `Failed to rewrite article: ${error.message}`;
                 errorMessageDiv.classList.remove('hidden');
-                generateSeoFieldButtons.forEach(btn => btn.disabled = true); // Keep disabled on error
+                generateSeoFromArticleButton.disabled = true; // Keep disabled on error
+                generateSeoFromTitleButton.disabled = true;
+                generateSingleSeoTitleButtons.forEach(btn => btn.disabled = true); // Keep individual magic buttons disabled
+                generateSingleSeoArticleButtons.forEach(btn => btn.disabled = true);
             } finally {
                 loadingIndicator.classList.add('hidden');
                 rewriteArticleButton.disabled = false; // Re-enable itself
             }
         });
 
-        // Event listeners for individual SEO generate buttons
-        generateSeoFieldButtons.forEach(button => {
-            button.addEventListener('click', async () => {
-                const targetId = button.dataset.target;
-                const promptType = button.dataset.promptType;
-                const targetInput = document.getElementById(targetId);
-                const loadingDiv = document.getElementById(`loading${promptType.charAt(0).toUpperCase() + promptType.slice(1)}`);
 
-                const rewrittenContent = rewrittenContentTextarea.value.trim();
+        /**
+         * Function to generate all SEO data based on a given context.
+         * @param {string} contextType 'article' or 'title'
+         */
+        async function generateAllSeoData(contextType) {
+            const articleTitle = articleTitleInput.value.trim();
+            const originalArticleContent = articleContentTextarea.value.trim();
+            const rewrittenContent = rewrittenContentTextarea.value.trim();
 
-                // Clear previous output for this field
-                targetInput.value = '';
-                errorMessageDiv.classList.add('hidden');
-                errorText.textContent = '';
+            // Clear all SEO fields and error messages
+            subTitleInput.value = '';
+            metaTitleInput.value = '';
+            metaDescriptionTextarea.value = '';
+            metaKeywordsInput.value = '';
+            seoSlugInput.value = '';
+            errorMessageDiv.classList.add('hidden');
+            errorText.textContent = '';
 
-                if (!rewrittenContent) {
-                    errorText.textContent = 'Please rewrite the article first before generating SEO data.';
+            let baseContext = '';
+            let loadingMsg = '';
+
+            if (contextType === 'article') {
+                if (!articleTitle) {
+                    errorText.textContent = 'Please enter an article title to generate SEO data from the article.';
                     errorMessageDiv.classList.remove('hidden');
                     return;
                 }
-
-                // Show specific loading indicator
-                loadingDiv.classList.add('show');
-                button.disabled = true; // Disable this specific button
-                rewriteArticleButton.disabled = true; // Disable main rewrite button
-
-                // Temporarily disable all other generate SEO field buttons
-                generateSeoFieldButtons.forEach(btn => {
-                    if (btn !== button) {
-                        btn.disabled = true;
-                    }
-                });
-
-                let promptToUse = '';
-                switch (promptType) {
-                    case 'subTitle':
-                        // Prompt for Sub Title: Direct answer, 80-120 characters
-                        promptToUse = `Based on the following rewritten automotive news article, provide ONLY a concise and engaging sub-title. It should be simple and easy to understand. Aim for 80 to 120 characters. Do not include colons, semicolons, or curly braces.
-                        \n\nRewritten Article: ${rewrittenContent}`;
-                        break;
-                    case 'metaTitle':
-                        // Prompt for Meta Title: Direct answer, under 60 characters
-                        promptToUse = `Based on the following rewritten automotive news article, provide ONLY a concise meta title suitable for SEO. Keep it under 60 characters. Do not include colons, semicolons, or curly braces.
-                        \n\nRewritten Article: ${rewrittenContent}`;
-                        break;
-                    case 'metaDescription':
-                        // Prompt for Meta Description: Direct answer, under 160 characters, summarize main points
-                        promptToUse = `Based on the following rewritten automotive news article, provide ONLY a compelling meta description suitable for SEO. Summarize the article's main points. Keep it under 160 characters. Do not include colons, semicolons, or curly braces.
-                        \n\nRewritten Article: ${rewrittenContent}`;
-                        break;
-                    case 'metaKeywords':
-                        // Prompt for Meta Keywords: Direct answer, 5-10 comma-separated keywords
-                        promptToUse = `Based on the following rewritten automotive news article, provide ONLY 5-10 relevant comma-separated keywords for SEO. Do not include colons, semicolons, or curly braces.
-                        \n\nRewritten Article: ${rewrittenContent}`;
-                        break;
-                }
-
-                try {
-                    const generatedText = await callGeminiAPI(promptToUse);
-                    targetInput.value = generatedText;
-                } catch (error) {
-                    console.error(`Error generating ${promptType}:`, error);
-                    targetInput.value = `Error: ${error.message.substring(0, 50)}...`;
-                    errorText.textContent = `Failed to generate ${promptType}: ${error.message}`;
+                // Prioritize rewritten content if available, else use original content
+                const contentForSeo = rewrittenContent || originalArticleContent;
+                if (!contentForSeo) {
+                    errorText.textContent = 'Please provide original article content or rewrite the article to generate SEO data from the article.';
                     errorMessageDiv.classList.remove('hidden');
-                } finally {
-                    loadingDiv.classList.remove('show');
-                    button.disabled = false; // Re-enable this specific button
-                    rewriteArticleButton.disabled = false; // Re-enable main rewrite button
-                    // Re-enable all other generate SEO field buttons
-                    generateSeoFieldButtons.forEach(btn => {
-                        btn.disabled = false;
-                    });
+                    return;
                 }
+                baseContext = `Article Title: ${articleTitle}\nArticle Content: ${contentForSeo}`;
+                loadingMsg = 'Generating SEO data from article... Please wait.';
+            } else if (contextType === 'title') {
+                if (!articleTitle) {
+                    errorText.textContent = 'Please enter an article title to generate SEO data from the title only.';
+                    errorMessageDiv.classList.remove('hidden');
+                    return;
+                }
+                baseContext = `Article Title: ${articleTitle}`;
+                loadingMsg = 'Generating SEO data from title only... Please wait.';
+            }
+
+            // Show main loading indicator
+            loadingMessage.textContent = loadingMsg;
+            loadingIndicator.classList.remove('hidden');
+            generateSeoFromArticleButton.disabled = true; // Disable both main SEO buttons
+            generateSeoFromTitleButton.disabled = true;
+            rewriteArticleButton.disabled = true; // Disable rewrite button
+            generateSingleSeoTitleButtons.forEach(btn => btn.disabled = true); // Disable individual magic buttons
+            generateSingleSeoArticleButtons.forEach(btn => btn.disabled = true);
+
+            try {
+                // Define prompts for all SEO generation tasks
+                const subTitlePrompt = `Based on the following information, provide ONLY a concise and engaging sub-title. It should be simple and easy to understand. Aim for 80 to 120 characters. Do not include colons, semicolons, or curly braces.
+                \n\n${baseContext}`;
+                const metaTitlePrompt = `Based on the following information, provide ONLY a concise meta title suitable for SEO. Keep it under 80 characters. Do not include colons, semicolons, or curly braces.
+                \n\n${baseContext}`;
+                const metaDescriptionPrompt = `Based on the following information, provide ONLY a compelling meta description suitable for SEO. Summarize the main points. Keep it under 160 characters. Do not include colons, semicolons, or curly braces.
+                \n\n${baseContext}`;
+                const metaKeywordsPrompt = `Based on the following information, provide ONLY 5-10 relevant comma-separated keywords for SEO. Do not include colons, semicolons, or curly braces.
+                \n\n${baseContext}`;
+                const seoSlugPrompt = `Based on the following information, provide ONLY a concise and SEO-friendly slug. Convert all text to lowercase, replace spaces with hyphens, and remove any special characters or punctuation.
+                \n\n${baseContext}`;
+
+                // Run all SEO API calls concurrently
+                const [
+                    generatedSubTitle,
+                    generatedMetaTitle,
+                    generatedMetaDescription,
+                    generatedMetaKeywords,
+                    generatedSeoSlug
+                ] = await Promise.allSettled([
+                    callGeminiAPI(subTitlePrompt),
+                    callGeminiAPI(metaTitlePrompt),
+                    callGeminiAPI(metaDescriptionPrompt),
+                    callGeminiAPI(metaKeywordsPrompt),
+                    callGeminiAPI(seoSlugPrompt)
+                ]);
+
+                // Update fields based on results
+                subTitleInput.value = generatedSubTitle.status === 'fulfilled' ? generatedSubTitle.value : `Error: ${generatedSubTitle.reason.message.substring(0, 50)}...`;
+                metaTitleInput.value = generatedMetaTitle.status === 'fulfilled' ? generatedMetaTitle.value : `Error: ${generatedMetaTitle.reason.message.substring(0, 50)}...`;
+                metaDescriptionTextarea.value = generatedMetaDescription.status === 'fulfilled' ? generatedMetaDescription.value : `Error: ${generatedMetaDescription.reason.message.substring(0, 50)}...`;
+                metaKeywordsInput.value = generatedMetaKeywords.status === 'fulfilled' ? generatedMetaKeywords.value : `Error: ${generatedMetaKeywords.reason.message.substring(0, 50)}...`;
+                seoSlugInput.value = generatedSeoSlug.status === 'fulfilled' ? generatedSeoSlug.value : `Error: ${generatedSeoSlug.reason.message.substring(0, 50)}...`;
+
+            } catch (error) {
+                console.error('Unhandled error during SEO data generation:', error);
+                errorText.textContent = `An unexpected error occurred during SEO data generation: ${error.message}`;
+                errorMessageDiv.classList.remove('hidden');
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                updateButtonStates(); // Re-enable buttons based on current input state
+            }
+        }
+
+        /**
+         * Function to generate a single SEO field.
+         * @param {string} targetId The ID of the textarea to update.
+         * @param {string} promptType The type of SEO data to generate (e.g., 'subTitle', 'metaTitle').
+         * @param {string} contextSource 'title' or 'article' to determine which context to use.
+         */
+        async function generateSingleSeoField(targetId, promptType, contextSource) {
+            const articleTitle = articleTitleInput.value.trim();
+            const originalArticleContent = articleContentTextarea.value.trim();
+            const rewrittenContent = rewrittenContentTextarea.value.trim();
+            const targetInput = document.getElementById(targetId);
+            const loadingDiv = document.getElementById(`loading${promptType.charAt(0).toUpperCase() + promptType.slice(1)}`);
+
+            // Clear previous output for this field
+            targetInput.value = '';
+            errorMessageDiv.classList.add('hidden');
+            errorText.textContent = '';
+
+            if (!articleTitle) {
+                errorText.textContent = 'Please enter an article title to generate SEO data.';
+                errorMessageDiv.classList.remove('hidden');
+                return;
+            }
+
+            let baseContext = `Article Title: ${articleTitle}`;
+            if (contextSource === 'article') {
+                const contentForSeo = rewrittenContent || originalArticleContent;
+                if (!contentForSeo) {
+                    errorText.textContent = 'Please provide original article content or rewrite the article to generate SEO data from the article.';
+                    errorMessageDiv.classList.remove('hidden');
+                    return;
+                }
+                baseContext += `\nArticle Content: ${contentForSeo}`;
+            }
+
+
+            // Show specific loading indicator
+            loadingDiv.classList.add('show');
+            // Disable all buttons while a single field is generating
+            rewriteArticleButton.disabled = true;
+            generateSeoFromArticleButton.disabled = true;
+            generateSeoFromTitleButton.disabled = true;
+            generateSingleSeoTitleButtons.forEach(btn => btn.disabled = true);
+            generateSingleSeoArticleButtons.forEach(btn => btn.disabled = true);
+
+
+            let promptToUse = '';
+            switch (promptType) {
+                case 'subTitle':
+                    promptToUse = `Based on the following information, provide ONLY a concise and engaging sub-title. It should be simple and easy to understand. Aim for 80 to 120 characters. Do not include colons, semicolons, or curly braces.
+                    \n\n${baseContext}`;
+                    break;
+                case 'metaTitle':
+                    promptToUse = `Based on the following information, provide ONLY a concise meta title suitable for SEO. Keep it under 80 characters. Do not include colons, semicolons, or curly braces.
+                    \n\n${baseContext}`;
+                    break;
+                case 'metaDescription':
+                    promptToUse = `Based on the following information, provide ONLY a compelling meta description suitable for SEO. Summarize the main points. Keep it under 160 characters. Do not include colons, semicolons, or curly braces.
+                    \n\n${baseContext}`;
+                    break;
+                case 'metaKeywords':
+                    promptToUse = `Based on the following information, provide ONLY 5-10 relevant comma-separated keywords for SEO. Do not include colons, semicolons, or curly braces.
+                    \n\n${baseContext}`;
+                    break;
+                case 'seoSlug':
+                    promptToUse = `Based on the following information, provide ONLY a concise and SEO-friendly slug. Convert all text to lowercase, replace spaces with hyphens, and remove any special characters or punctuation.
+                    \n\n${baseContext}`;
+                    break;
+            }
+
+            try {
+                const generatedText = await callGeminiAPI(promptToUse);
+                targetInput.value = generatedText;
+            } catch (error) {
+                console.error(`Error generating ${promptType}:`, error);
+                targetInput.value = `Error: ${error.message.substring(0, 50)}...`;
+                errorText.textContent = `Failed to generate ${promptType}: ${error.message}`;
+                errorMessageDiv.classList.remove('hidden');
+            } finally {
+                loadingDiv.classList.remove('show');
+                updateButtonStates(); // Re-enable buttons based on current input state
+            }
+        }
+
+
+        // Event listeners for the main SEO generation buttons
+        generateSeoFromArticleButton.addEventListener('click', () => generateAllSeoData('article'));
+        generateSeoFromTitleButton.addEventListener('click', () => generateAllSeoData('title'));
+
+        // Event listeners for individual magic buttons
+        generateSingleSeoTitleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                const promptType = button.dataset.promptType;
+                generateSingleSeoField(targetId, promptType, 'title');
             });
         });
 
+        generateSingleSeoArticleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                const promptType = button.dataset.promptType;
+                generateSingleSeoField(targetId, promptType, 'article');
+            });
+        });
+
+
+        // Enable/disable buttons based on input
+        function updateButtonStates() {
+            const isTitleProvided = articleTitleInput.value.trim() !== '';
+            const isOriginalContentProvided = articleContentTextarea.value.trim() !== '';
+            const isRewrittenContentProvided = rewrittenContentTextarea.value.trim() !== '';
+            const isAnyContentProvided = isOriginalContentProvided || isRewrittenContentProvided;
+
+            // Enable Rewrite Article button if original content exists
+            rewriteArticleButton.disabled = !isOriginalContentProvided;
+
+            // Enable "Generate All SEO from Article" button if article title AND any content are provided
+            generateSeoFromArticleButton.disabled = !isTitleProvided || !isAnyContentProvided;
+
+            // Enable "Generate All SEO from Title Only" button if article title is provided
+            generateSeoFromTitleButton.disabled = !isTitleProvided;
+
+            // Enable individual "Generate from Title" buttons if article title is provided
+            generateSingleSeoTitleButtons.forEach(btn => {
+                btn.disabled = !isTitleProvided;
+            });
+
+            // Enable individual "Generate from Article" buttons if article title AND any content are provided
+            generateSingleSeoArticleButtons.forEach(btn => {
+                btn.disabled = !isTitleProvided || !isAnyContentProvided;
+            });
+        }
+
+        articleTitleInput.addEventListener('input', updateButtonStates);
+        articleContentTextarea.addEventListener('input', updateButtonStates);
+        rewrittenContentTextarea.addEventListener('input', updateButtonStates); // Listen to rewritten content too
+
         // Initialize button states on page load
-        generateSeoFieldButtons.forEach(btn => btn.disabled = true);
+        updateButtonStates();
     </script>
 </body>
 </html>
